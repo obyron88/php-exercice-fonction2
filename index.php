@@ -40,33 +40,35 @@ echo $exo2;
  ?>
  <h1>Exo 3</h1>
  <?php
+ batailleNavale('c', 9);
+ function batailleNavale($string, $int) {
+     $plateforme = array(
+             'a' => array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+             'b' => array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+             'c' => array(1, 1, 1, 1, 1, 1, 1, 1, 10, 1),
+             'd' => array(1, 1, 1, 1, 1, 1, 1, 1, 10, 1),
+             'e' => array(1, 1, 1, 1, 1, 1, 1, 1, 10, 1),
+             'f' => array(1, 1, 10, 10, 10, 1, 1, 1, 10, 1),
+             'g' => array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+             'h' => array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+             'i' => array(1, 1, 1, 1, 10, 10, 1, 1, 1, 1),
+             'j' => array(1, 1, 1, 1, 10, 10, 1, 1, 1, 1));
 
- function bataille_navale($col, $ligne)
-{
-    $tab_col = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J');
-    $tab_ligne = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+     $string = strtolower($string);
+     $int = $int-1;
+     switch($plateforme[$string][$int]) {
+         case 1:
+             echo 'Raté !';
+             break;
+         case 10:
+             echo 'Touché !';
+             break;
+         default:
+             echo 'Hors-jeu';
+             break;
+     }
+ }
 
-    $bateau1 = array('F', 3, 4, 5);
-    $bateau2 = array('I', 5, 6);
-    $bateau3 = array( 9, 'C', 'D', 'E', 'F');
-
-    $bateaux = array($bateau1, $bateau2, $bateau3);
-
-    $coord_ligne = false; $coord_col = false;
-
-    if ( $hors_jeu = (!in_array($col, $tab_col) || !in_array($ligne, $tab_ligne)) )
-        echo 'Hors-Jeu !<br />';
-
-    foreach ( $bateaux as $bateau ) {
-        foreach( $bateau as $coord ) {
-            if( $coord == $col ) $coord_col = true;
-            if( $coord == $ligne ) $coord_ligne = true;
-        }
-    }
-
-    if ( $touche = ($coord_ligne == true && $coord_col == true) ) echo 'Touché !';
-    elseif (!$hors_jeu && !$touche) echo 'Loupé !';
-}
   ?>
 
 </body>
